@@ -1,0 +1,32 @@
+Intent Recognition System Development
+Developing an efficient Intent Recognition System is crucial for enhancing user experience and ensuring seamless human-computer interactions. The goal of this project is to design and implement a system that accurately classifies user queries or commands into predefined categories or intents using Natural Language Processing (NLP) techniques. This system will enable applications to understand user intentions and respond appropriately, making interactions more intuitive and user-friendly.
+
+Dataset Overview
+The dataset used for this project is structured in a JSON format and contains various user intents along with their corresponding text examples and responses. Here is a detailed breakdown of the dataset:
+
+Intents: The dataset includes multiple predefined intents, such as "Greeting," "GreetingResponse," "CourtesyGreeting," "CourtesyGreetingResponse," "CurrentHumanQuery," "NameQuery," "RealNameQuery," "TimeQuery," "Thanks".
+
+Text Examples: For each intent, there are several text examples that users might input. For instance, the "Greeting" intent includes text examples like "Hi," "Hello," and "Hola."
+
+Responses: Each intent is associated with a set of predefined responses that the system can use to reply to the user's input. For example, the "Greeting" intent has responses like "Hi human, please tell me your UnivIn user" and "Hello human, please tell me your UnivIn user."
+
+Extensions: Some intents include additional functionalities or extensions, such as updating user information or fetching current time.
+
+Context Management: The dataset also handles context management, where certain intents require maintaining or clearing the context for accurate response generation.
+
+Example Entries
+Greeting Intent
+
+Text Examples: "Hi," "Hello," "Hola"
+Responses: "Hi human, please tell me your UnivIn user," "Hello human, please tell me your UnivIn user"
+Context: Outgoing context set to "GreetingUserRequest"
+GreetingResponse Intent
+
+Text Examples: "My user is Sourabh," "This is Sourabh"
+Responses: "Great! Hi <HUMAN>! How can I help?," "Good! Hi <HUMAN>, how can I help you?"
+Context: Incoming context "GreetingUserRequest" and clears context after responding
+TimeQuery Intent
+
+Text Examples: "What is the time?," "What's the time?"
+Responses: "One moment," "One sec"
+Extension: Fetches the current time and responds with "The time is %%TIME%%"
