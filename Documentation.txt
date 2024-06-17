@@ -135,3 +135,11 @@ Function Definition: The response function takes a sentence as input and perform
 5. Response Selection: A random response is selected from intent_doc corresponding to the predicted category.
 6. Output: The function returns the selected response and the predicted category label.
 This function facilitates intent recognition in natural language processing applications, providing a response based on the predicted category of user input.
+
+Interactive Chat Loop
+1. User Input: The program prompts the user to input a message ('You: ').
+2. Quit Option: If the user inputs 'quit', the loop terminates, ending the chat session.
+3. Response Generation: For other inputs, the response function response(input_) generates a response (res) and identifies its type (typ).
+4. Display: The bot's response and its type are printed ('Bot: {} -- TYPE: {}').
+5. Loop Continuation: The loop continues to prompt for user input until 'quit' is entered.
+This interactive chat loop allows users to converse with the chatbot, displaying responses and their types, providing a simple conversational interface.
