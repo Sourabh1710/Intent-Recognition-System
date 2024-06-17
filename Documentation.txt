@@ -45,3 +45,34 @@ spacy: spaCy is an open-source library for advanced Natural Language Processing.
 Loading the NLP Model
 The spaCy library is used to load a pre-trained English NLP model:
 spaCy Model: The en_core_web_sm model is a small English model that includes vocabulary, syntax, and named entities. This model is capable of performing a wide range of NLP tasks and will be integral to processing and understanding the textual input in our intent recognition system.
+
+Loading the Dataset
+Opening the File: The with open('Intent.json') as f: statement opens the Intent.json file in read mode. The with statement ensures proper resource management, automatically closing the file when the block is exited.
+Loading JSON Data: The json.load(f) function parses the JSON data from the file and converts it into a Python dictionary, which is stored in the intents variable. This dictionary contains all the intents, text examples, and responses that will be used to train and evaluate the intent recognition model.
+
+Text Preprocessing
+Function Definition: The preprocessing function takes a single argument line, which is a string representing a line of text.
+Character Removal: The first re.sub function removes any characters that are not lowercase or uppercase letters, punctuation marks (., ?, !), or single quotes ('). This helps in cleaning the text by removing unwanted characters such as numbers and special symbols.
+Space Normalization: The second re.sub function replaces multiple consecutive spaces with a single space. This ensures that the text is normalized, eliminating extra spaces that might have been introduced during the character removal process.
+Return Cleaned Text: The cleaned and normalized text is returned as the output of the function.
+
+Data Preparation
+Initialization: Empty lists inputs and targets are initialized to store preprocessed text examples and their corresponding intents. The classes list is initialized to store unique intent classes, and the intent_doc dictionary is initialized to map each intent to its list of responses.
+Iterate Over Intents: The code iterates over each intent in the dataset.
+Add Unique Intents to Classes: Each intent is added to the classes list if it is not already present.
+Initialize Intent in Dictionary: Each intent is initialized in the intent_doc dictionary if it is not already present.
+Preprocess Text Examples: Each text example for the intent is preprocessed using the preprocessing function and added to the inputs list. The corresponding intent is added to the targets list.
+Store Responses: The responses for each intent are added to the intent_doc dictionary.
+
+Tokenization and Padding
+Function Definition: The tokenize_data function takes an input_list of preprocessed text examples as input.
+Tokenizer Initialization: The tokenizer is initialized with no filters and an out-of-vocabulary (OOV) token <unk>. This ensures that all characters are kept during tokenization and any words not in the vocabulary are replaced with the OOV token.
+Fitting the Tokenizer: The fit_on_texts method is called on the input_list to create the word index, mapping each unique word to an integer.
+Text to Sequences: The texts_to_sequences method converts the input text data into sequences of integers based on the word index.
+Padding Sequences: The pad_sequences method pads the sequences to ensure uniform length. Padding is added to the beginning of the sequences (padding='pre').
+Return Tokenizer and Sequences: The function returns the tokenizer and the padded input sequences (input_seq).
+
+Preprocessing Input Data
+The function is then called to preprocess the input data:
+    tokenizer, input_tensor = tokenize_data(inputs)
+Tokenize and Pad Inputs: The tokenize_data function is called with inputs, the list of preprocessed text examples. The function returns the tokenizer and the padded input sequences, which are stored in input_tensor.
