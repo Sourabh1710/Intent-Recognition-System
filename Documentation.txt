@@ -76,3 +76,31 @@ Preprocessing Input Data
 The function is then called to preprocess the input data:
     tokenizer, input_tensor = tokenize_data(inputs)
 Tokenize and Pad Inputs: The tokenize_data function is called with inputs, the list of preprocessed text examples. The function returns the tokenizer and the padded input sequences, which are stored in input_tensor.
+
+Categorical Target Creation
+Preprocess output data by creating categorical targets
+    target_tensor, trg_index_word = create_categorical_target(targets)
+Function Definition: The create_categorical_target function takes a list of target labels (targets) as input.
+Target Mapping Initialization: A dictionary (word) is initialized to map unique target labels to indices, and categorical_target is initialized as an empty list.
+Index Counter: The counter variable is initialized to track and assign indices to unique target labels.
+Target Label Iteration: The function iterates over each target label (trg) in targets.
+Index Assignment: If trg is not already in word, it assigns a new index (counter) to trg in word and increments counter by 1.
+Categorical Target Construction: The function appends the index corresponding to trg in categorical_target.
+One-Hot Encoding: The tf.keras.utils.to_categorical function converts categorical_target into a one-hot encoded tensor (categorical_tensor) with a number of classes equal to len(word) and data type 'int32'.
+Index to Word Mapping: The trg_index_word dictionary is created to map categorical indices back to their original target labels.
+Return Categorical Tensor and Mapping: The function returns categorical_tensor and trg_index_word.
+Preprocessing Output Data
+
+Preprocessing Output Data
+Categorical Target Creation: The create_categorical_target function is called with targets, the list of target labels. The function returns target_tensor, the categorical representation of targets, and trg_index_word, the mapping from categorical indices to original target labels.
+This function converts categorical target labels into a format suitable for training machine learning models, ensuring that each target label is represented numerically and can be easily interpreted back into its original categorical form.
+
+Model Training Parameters
+Function Definition: The variables epochs, vocab_size, embed_dim, units, and target_length define parameters used for training a machine learning model.
+Training Epochs: epochs specifies the number of training epochs, or iterations over the entire dataset during training.
+Vocabulary Size: vocab_size represents the size of the vocabulary for tokenized data, calculated as the length of the tokenizer's word index plus one.
+Embedding Dimension: embed_dim defines the dimensionality of the embedding space for the model. Embeddings are dense vectors representing words or tokens.
+Model Units: units specifies the number of units or neurons in the model layers, influencing the complexity and capacity of the model.
+Target Length: target_length is the length of sequences in the target tensor (target_tensor). It determines the expected length of output sequences from the model.
+Preprocessing Output Data
+These variables are typically set based on the characteristics of the dataset and the requirements of the machine learning model being trained.
